@@ -38,9 +38,8 @@ RUN set -eux; \
     && docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
     && docker-php-ext-install -j "$(nproc)" gd iconv pdo_mysql zip bcmath opcache mysqli sockets pcntl tidy \
     && pecl bundle -d /usr/src/php/ext /tmp/ext/redis-5.3.7.tgz \
-    && pecl bundle -d /usr/src/php/ext /tmp/ext/psr-1.2.0.tgz \
     && pecl bundle -d /usr/src/php/ext /tmp/ext/mcrypt-1.0.6.tgz \
-    && docker-php-ext-install -j "$(nproc)" redis psr mcrypt \
+    && docker-php-ext-install -j "$(nproc)" redis mcrypt \
     && rm -rf /tmp/*.tgz; \
 	\
 	apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false
